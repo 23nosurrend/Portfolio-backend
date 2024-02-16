@@ -41,7 +41,7 @@ const readOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { title } = req.body;
         const FoundOne = yield creatBlogModel_1.default.findOne({ title });
         if (!FoundOne) {
-            return res.status(200).json({
+            return res.status(400).json({
                 message: "This Blogs currently isn't available"
             });
         }
@@ -53,7 +53,7 @@ const readOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (err) {
         console.log(err);
-        return res.status(400).json({
+        return res.status(500).json({
             message: "Unable to read Blog"
         });
     }

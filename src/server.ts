@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import welcome from './routes/welcomeRoutes'
 import blog from "./routes/createBlogRoute"
+import getAll from "./routes/readAllRoute"
 dotenv.config();
 const port = 3000;
 const app = express();
@@ -10,6 +11,8 @@ const app = express();
 // create AP endpoint
  app.use("/welcome", welcome)
  app.use("/write",blog)
+ app.use("/get",getAll)
+ app.use("/get/one",getAll)
 
 
 
