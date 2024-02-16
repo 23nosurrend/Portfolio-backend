@@ -9,6 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const welcomeRoutes_1 = __importDefault(require("./routes/welcomeRoutes"));
 const createBlogRoute_1 = __importDefault(require("./routes/createBlogRoute"));
 const readAllRoute_1 = __importDefault(require("./routes/readAllRoute"));
+const deleteBlogRoute_1 = __importDefault(require("./routes/deleteBlogRoute"));
 dotenv_1.default.config();
 const port = 3000;
 const app = (0, express_1.default)();
@@ -17,6 +18,7 @@ app.use("/welcome", welcomeRoutes_1.default);
 app.use("/write", createBlogRoute_1.default);
 app.use("/get", readAllRoute_1.default);
 app.use("/get/one", readAllRoute_1.default);
+app.use("/delete", deleteBlogRoute_1.default);
 const connectMongodb = () => {
     const mongoPASS = process.env.MONGOPASS;
     if (!mongoPASS) {

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import welcome from './routes/welcomeRoutes'
 import blog from "./routes/createBlogRoute"
 import getAll from "./routes/readAllRoute"
+import deleteBlog from "./routes/deleteBlogRoute"
 dotenv.config();
 const port = 3000;
 const app = express();
@@ -13,6 +14,7 @@ const app = express();
  app.use("/write",blog)
  app.use("/get",getAll)
  app.use("/get/one",getAll)
+ app.use("/delete",deleteBlog)
 
 
 
