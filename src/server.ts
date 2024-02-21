@@ -7,6 +7,7 @@ import getAll from "./routes/readAllRoute"
 import deleteBlog from "./routes/deleteBlogRoute"
 import comment from "./routes/commentRoute"
 import updateBlog from "./routes/updateBlogRoute"
+import admin from "./routes/userRoute"
 dotenv.config();
 const port = 3000;
 const app = express();
@@ -19,6 +20,7 @@ const app = express();
  app.use("/delete",deleteBlog)
  app.use("/add",comment)
  app.use("/all",updateBlog)
+ app.use("/admin",admin)
 
 
 

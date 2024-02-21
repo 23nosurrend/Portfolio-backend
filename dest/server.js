@@ -12,6 +12,7 @@ const readAllRoute_1 = __importDefault(require("./routes/readAllRoute"));
 const deleteBlogRoute_1 = __importDefault(require("./routes/deleteBlogRoute"));
 const commentRoute_1 = __importDefault(require("./routes/commentRoute"));
 const updateBlogRoute_1 = __importDefault(require("./routes/updateBlogRoute"));
+const userRoute_1 = __importDefault(require("./routes/userRoute"));
 dotenv_1.default.config();
 const port = 3000;
 const app = (0, express_1.default)();
@@ -23,6 +24,7 @@ app.use("/get/one", readAllRoute_1.default);
 app.use("/delete", deleteBlogRoute_1.default);
 app.use("/add", commentRoute_1.default);
 app.use("/all", updateBlogRoute_1.default);
+app.use("/admin", userRoute_1.default);
 const connectMongodb = () => {
     const mongoPASS = process.env.MONGOPASS;
     if (!mongoPASS) {
