@@ -7,5 +7,5 @@ import createBlog from "../controllers/createBlogContoller"
 const router=express.Router()
 router.use(bodyParser.json())
 
-router.post("/create",createBlog)
+router.post("/post",createBlog)
 export default router

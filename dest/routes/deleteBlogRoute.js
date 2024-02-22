@@ -9,6 +9,6 @@ const deleteBlogController_1 = require("../controllers/deleteBlogController");
 const authMiddleware_1 = __importDefault(require("../midddleware/authMiddleware"));
 const router = express_1.default.Router();
 router.use(body_parser_1.default.json());
-router.delete("/all", deleteBlogController_1.deleteAll);
-router.delete("/one", authMiddleware_1.default, deleteBlogController_1.deleteOne);
+router.delete("/blogs", authMiddleware_1.default, deleteBlogController_1.deleteAll);
+router.delete("/blog", authMiddleware_1.default, deleteBlogController_1.deleteOne);
 exports.default = router;

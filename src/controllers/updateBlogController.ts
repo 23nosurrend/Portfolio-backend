@@ -8,7 +8,11 @@ const updateBlog=async(req:any,res:any)=>{
         const found=await Blogs.findOne({ title: title })
         if(!found){
             return res.status(400).json({
-                message:"This blog  titled"+" "+title+" "+"does not exist"
+                status:"fail",
+                data:{
+                    message:"This blog  titled"+" "+title+" "+"does not exist"
+                }
+                
             })
         }else{
             // check and see if new content is provided then replace
@@ -19,14 +23,22 @@ const updateBlog=async(req:any,res:any)=>{
 
            await found.save()
            return res.status(200).json({
-            message:"Blog titled"+" "+title+" was succesful updated"
+            status:"success",
+            data:{
+                 message:"Blog titled"+" "+title+" was succesful updated"
+            }
+           
            })
         }
 
     }catch(err:any){
         console.log(err)
         return res.status(500).json({
-            message:"Internal Server Error"
+            status:"fail",
+            data:{
+                message:"Internal Server Error"
+            }
+           
         })
     }
 }

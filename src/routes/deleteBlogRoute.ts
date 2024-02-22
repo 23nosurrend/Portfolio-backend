@@ -6,6 +6,6 @@ import authenticateToken from "../midddleware/authMiddleware"
 
 const router:Router=express.Router()
 router.use(bodyParser.json())
-router.delete("/all",deleteAll)
-router.delete("/one",authenticateToken,deleteOne)
+router.delete("/blogs",authenticateToken,deleteAll)
+router.delete("/blog",authenticateToken,deleteOne)
 export default router

@@ -8,5 +8,5 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const updateBlogController_1 = __importDefault(require("../controllers/updateBlogController"));
 const router = express_1.default.Router();
 router.use(body_parser_1.default.json());
-router.put("/update", updateBlogController_1.default);
+router.put("/blog", updateBlogController_1.default);
 exports.default = router;

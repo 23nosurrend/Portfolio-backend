@@ -15,12 +15,12 @@ const app = express();
 
 // create AP endpoint
  app.use("/welcome", welcome)
- app.use("/write",blog)
+ app.use("/",blog)
  app.use("/get",getAll)
- app.use("/get/one",getAll)
+ app.use("/get",getAll)
  app.use("/delete",deleteBlog)
- app.use("/add",comment)
- app.use("/all",updateBlog)
+ app.use("/post",comment)
+ app.use("/",updateBlog)
  app.use("/admin",admin)
  app.use("/",protectedRouter)
 

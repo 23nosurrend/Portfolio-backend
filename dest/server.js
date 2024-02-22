@@ -19,12 +19,12 @@ const port = 3000;
 const app = (0, express_1.default)();
 // create AP endpoint
 app.use("/welcome", welcomeRoutes_1.default);
-app.use("/write", createBlogRoute_1.default);
+app.use("/", createBlogRoute_1.default);
 app.use("/get", readAllRoute_1.default);
-app.use("/get/one", readAllRoute_1.default);
+app.use("/get", readAllRoute_1.default);
 app.use("/delete", deleteBlogRoute_1.default);
-app.use("/add", commentRoute_1.default);
-app.use("/all", updateBlogRoute_1.default);
+app.use("/post", commentRoute_1.default);
+app.use("/", updateBlogRoute_1.default);
 app.use("/admin", userRoute_1.default);
 app.use("/", protectedRoute_1.default);
 const connectMongodb = () => {

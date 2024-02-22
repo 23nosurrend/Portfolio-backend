@@ -7,8 +7,8 @@ import {readAll,readOne} from "../controllers/readBlogController"
 const router:Router=express.Router()
 
 router.use(bodyParser.json())
-router.get("/all",readAll)
-router.get("/one",readOne)
+router.get("/blogs",readAll)
+router.get("/blog",readOne)
 
 export default router
 

@@ -6,6 +6,6 @@ import updateBlog from "../controllers/updateBlogController"
 const router:Router=express.Router()
 
 router.use(bodyparser.json())
-router.put("/update",updateBlog)
+router.put("/blog",updateBlog)
 
 export default router

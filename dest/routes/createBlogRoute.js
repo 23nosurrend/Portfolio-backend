@@ -8,5 +8,5 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const createBlogContoller_1 = __importDefault(require("../controllers/createBlogContoller"));
 const router = express_1.default.Router();
 router.use(body_parser_1.default.json());
-router.post("/create", createBlogContoller_1.default);
+router.post("/post", createBlogContoller_1.default);
 exports.default = router;

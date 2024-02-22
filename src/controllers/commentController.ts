@@ -10,7 +10,12 @@ const addComment=async(req:any,res:any)=>{
         const found=await Blogs.findOne({title})
         if(!found){
             return res.status(400).json({
-                message:"This blog entitled:"+" "+title+" "+"I is not found "
+                status:"fail",
+                data:{
+                    message:"This blog entitled:"+" "+title+" "+"I is not found "
+                }
+
+                
             })
         }else{
              const commentArray=found.comment
@@ -19,7 +24,11 @@ const addComment=async(req:any,res:any)=>{
              await found.save()
             
             return res.status(200).json({
-                message:"Great!Mr/Ms you  comment saved succesfully!"
+                status:"success",
+                data:{
+                     message:"Great!Mr/Ms you  comment saved succesfully!"
+                }
+               
             })
 
 
@@ -32,7 +41,12 @@ const addComment=async(req:any,res:any)=>{
     }catch(err){
         console.log(err)
         return res.status(500).json({
-            message:"Internal Server Error"
+            status:"fail",
+            data:{
+                message:"Internal Server Error"
+            }
+
+            
         })
     }
     

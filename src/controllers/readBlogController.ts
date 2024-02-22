@@ -3,19 +3,32 @@ const readAll=async (req:any,res:any)=>{
     try{
         const findAll=await Blogs.find()// find() is used to get all documenet
         if(!findAll.length){
-            return res.status(200).json({
-                message:"No Blogs available"
+            return res.status(400).json({
+                status:"fail",
+                data:{
+                    message:"No Blogs available"
+                }
+
+                
             })
         }else{
             return res.status(200).json({
-                blogs:findAll
+                status:"success",
+                data:{
+                     blogs:findAll
+                }
+               
             })
         }
 
     }catch(err:any){
         console.log(err)
         return res.status(400).json({
-            message:"Failed to retrieve all Blogs"
+            status:"fail",
+            data:{
+                 message:"Failed to retrieve all Blogs"
+            }
+           
         })
 
     }
@@ -27,11 +40,19 @@ const readOne=async(req:any,res:any)=>{
         const FoundOne=await Blogs.findOne({title})
         if(!FoundOne){
             return res.status(400).json({
-                message:"This Blogs currently isn't available"
+                status:"fail",
+                data:{
+                    message:"This Blogs currently isn't available"
+                }
+                
             })
         }else{
             return res.status(200).json({
-                message:FoundOne
+                status:"success",
+                data:{
+                    message:FoundOne
+                }
+                
             })
         }
 
@@ -43,7 +64,11 @@ const readOne=async(req:any,res:any)=>{
     }catch(err:any){
         console.log(err)
         return res.status(500).json({
-            message:"Unable to read Blog"
+            status:"success",
+            data:{
+                 message:"Unable to read Blog"
+            }
+           
         })
 
     }
