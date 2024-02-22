@@ -26,7 +26,10 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             const existingBlog = yield creatBlogModel_1.default.findOne({ title });
             if (existingBlog) {
                 return res.status(409).json({
-                    message: `A blog with the title '${title}' already exists`
+                    status: "fail",
+                    data: {
+                        message: `A blog with the title '${title}' already exists`
+                    }
                 });
             }
             const newBlog = new creatBlogModel_1.default({
@@ -37,14 +40,20 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             });
             yield newBlog.save();
             return res.status(200).json({
-                message: "Blogs created successfully"
+                status: "success",
+                data: {
+                    message: "Blogs created successfully"
+                }
             });
         }
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Failed  to create Blog"
+            status: "fail",
+            data: {
+                message: "Failed  to create Blog"
+            }
         });
     }
 });

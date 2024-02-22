@@ -19,20 +19,29 @@ const deleteAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const count = yield creatBlogModel_1.default.countDocuments();
         if (count === 0) {
             return res.status(404).json({
-                message: "No current blogs to delete"
+                status: "fail",
+                data: {
+                    message: "No current blogs to delete"
+                }
             });
         }
         else {
             yield creatBlogModel_1.default.deleteMany();
             return res.status(200).json({
-                message: "All blogs deleted"
+                status: "success",
+                data: {
+                    message: "All blogs deleted"
+                }
             });
         }
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Unable to delete Blogs"
+            status: "fail",
+            data: {
+                message: "Unable to delete Blogs"
+            }
         });
     }
 });
@@ -43,20 +52,29 @@ const deleteOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const found = yield creatBlogModel_1.default.findOne({ title });
         if (!found) {
             return res.status(400).json({
-                message: "This blog entitled:" + " " + title + " " + "I is not found "
+                status: "fail",
+                data: {
+                    message: "This blog entitled:" + " " + title + " " + "I is not found "
+                }
             });
         }
         else {
             yield found.deleteOne();
             return res.status(200).json({
-                message: "Blog  entitled" + " " + title + " " + "succesfully deleted"
+                status: "success",
+                data: {
+                    message: "Blog  entitled" + " " + title + " " + "succesfully deleted"
+                }
             });
         }
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Can not delete this blog"
+            status: "fail",
+            data: {
+                message: "Can not delete this blog"
+            }
         });
     }
 });

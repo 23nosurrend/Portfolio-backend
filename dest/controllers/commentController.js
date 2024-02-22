@@ -21,7 +21,10 @@ const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const found = yield creatBlogModel_1.default.findOne({ title });
         if (!found) {
             return res.status(400).json({
-                message: "This blog entitled:" + " " + title + " " + "I is not found "
+                status: "fail",
+                data: {
+                    message: "This blog entitled:" + " " + title + " " + "I is not found "
+                }
             });
         }
         else {
@@ -29,14 +32,20 @@ const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             commentArray.push({ name, text });
             yield found.save();
             return res.status(200).json({
-                message: "Great!Mr/Ms you  comment saved succesfully!"
+                status: "success",
+                data: {
+                    message: "Great!Mr/Ms you  comment saved succesfully!"
+                }
             });
         }
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Internal Server Error"
+            status: "fail",
+            data: {
+                message: "Internal Server Error"
+            }
         });
     }
 });

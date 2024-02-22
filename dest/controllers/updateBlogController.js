@@ -20,7 +20,10 @@ const updateBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const found = yield creatBlogModel_1.default.findOne({ title: title });
         if (!found) {
             return res.status(400).json({
-                message: "This blog  titled" + " " + title + " " + "does not exist"
+                status: "fail",
+                data: {
+                    message: "This blog  titled" + " " + title + " " + "does not exist"
+                }
             });
         }
         else {
@@ -35,14 +38,20 @@ const updateBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 found.content = content;
             yield found.save();
             return res.status(200).json({
-                message: "Blog titled" + " " + title + " was succesful updated"
+                status: "success",
+                data: {
+                    message: "Blog titled" + " " + title + " was succesful updated"
+                }
             });
         }
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Internal Server Error"
+            status: "fail",
+            data: {
+                message: "Internal Server Error"
+            }
         });
     }
 });
