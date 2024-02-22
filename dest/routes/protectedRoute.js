@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const body_parser_1 = __importDefault(require("body-parser"));
-const deleteBlogController_1 = require("../controllers/deleteBlogController");
 const authMiddleware_1 = __importDefault(require("../midddleware/authMiddleware"));
 const router = express_1.default.Router();
-router.use(body_parser_1.default.json());
-router.delete("/all", deleteBlogController_1.deleteAll);
-router.delete("/one", authMiddleware_1.default, deleteBlogController_1.deleteOne);
+router.get("/", authMiddleware_1.default, (req, res) => {
+    return res.status(200).json({
+        message: "Protected user accessed", user: req.body.user
+    });
+});
 exports.default = router;

@@ -16,12 +16,18 @@ exports.loginController = exports.SignUpController = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const secretKey = "@@Key"; // Secret key to be used in JWt
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const SignUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
         if (data.length === 0) {
-            return res.status(400).json({ message: "Empty data" });
+            return res.status(400).json({
+                status: "Fail",
+                data: {
+                    message: "Empty data"
+                }
+            });
         }
         const salt = yield bcrypt_1.default.genSalt(8);
         const hashedPassword = yield bcrypt_1.default.hash(data.Password, salt);
@@ -29,7 +35,10 @@ const SignUpController = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const existinguser = yield userModel_1.default.findOne({ Email: data.Email });
         if (existinguser) {
             return res.status(200).json({
-                message: "email already in use"
+                status: "Fail",
+                data: {
+                    message: "email already in use"
+                }
             });
         }
         else {
@@ -39,17 +48,20 @@ const SignUpController = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 Password: data.Password
             });
             yield userInfo.save();
-            // generate JWT
-            const token = jsonwebtoken_1.default.sign({ email: data.Email }, secretKey, { expiresIn: "1h" });
             return res.status(200).json({
-                message: "User created successfully",
-                token: token
+                status: "success",
+                data: {
+                    message: "User created successfully",
+                }
             });
         }
     }
     catch (err) {
         console.log("some error:", err);
-        res.send("some error occured");
+        return res.status(500).json({
+            status: "error",
+            message: "Internal server error"
+        });
     }
 });
 exports.SignUpController = SignUpController;
@@ -59,35 +71,55 @@ const loginController = (req, res) => __awaiter(void 0, void 0, void 0, function
         // Check and see if pasword and email is provided
         if (!Email || !Password) {
             return res.status(400).json({
-                message: " Email and Password are required"
+                status: "fail",
+                data: {
+                    message: " Email and Password are required"
+                }
             });
         }
         else {
             const user = yield userModel_1.default.findOne({ Email });
             if (!user) {
                 return res.status(400).json({
-                    message: "The user doesn't exist"
+                    status: "fail",
+                    data: {
+                        message: "The user doesn't exist"
+                    }
                 });
             }
             else {
                 // check if passowrd exist ,this will prevent unexpected behavior when passowrd is not a string
                 if (typeof user.Password !== "string") {
                     return res.status(400).json({
-                        message: "invalid user credentials"
+                        status: "fail",
+                        data: {
+                            message: "invalid user credentials"
+                        }
                     });
                 }
                 else {
                     const userPassword = yield bcrypt_1.default.compare(Password, user.Password);
                     if (userPassword) {
-                        const token = jsonwebtoken_1.default.sign({ email: Email }, secretKey, { expiresIn: "1h" });
+                        const secret = process.env.secretKey;
+                        if (!secret) {
+                            console.log("secret key not provided");
+                            process.exit();
+                        }
+                        const token = jsonwebtoken_1.default.sign({ email: Email }, secret, { expiresIn: "1h" });
                         return res.status(200).json({
-                            message: "User created successfully",
-                            token: token
+                            status: "success",
+                            data: {
+                                message: "User created successfully",
+                                token: token
+                            }
                         });
                     }
                     else {
                         return res.status(400).json({
-                            message: "incorrect credentials"
+                            status: "fail",
+                            data: {
+                                message: "incorrect credentials"
+                            }
                         });
                     }
                 }
@@ -97,7 +129,10 @@ const loginController = (req, res) => __awaiter(void 0, void 0, void 0, function
     catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: "Internal Server error"
+            status: "error",
+            data: {
+                message: "Internal Server error"
+            }
         });
     }
 });
