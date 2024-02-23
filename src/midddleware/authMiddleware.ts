@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken"
 import {Request,Response,NextFunction} from "express"
+import dotenv from "dotenv"
 
+
+dotenv.config()
 const secretKey='@@Key'
 
 function authenticateToken(req:Request,res:Response,Next:NextFunction){
@@ -8,14 +11,27 @@ function authenticateToken(req:Request,res:Response,Next:NextFunction){
 
     if(!token){
         return res.status(401).json({
-            message:"access denied access required"
+            status:"fail",
+            data:{
+                message:"access denied access required"
+            }
+            
         })
     }else{
-        jwt.verify(token,secretKey,(err:any,user:any)=>{
+        const secret:string |undefined=process.env.secretKey 
+        if(!secret){
+            console.log("secret key not provided")
+            process.exit()
+        }
+        jwt.verify(token,secret,(err:any,user:any)=>{
             if(err){
-                console.log(err)
+                console.log(secret,err)
                 return res.status(403).json({
-                    error:"Invalid Token."
+                    status:"fail",
+                    data:{
+                         error:"Invalid Token."
+                    }
+                   
                 })
             }else{
                 req.body.user=user;
