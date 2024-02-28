@@ -22,6 +22,10 @@ const BlogSchema = new mongoose_1.default.Schema({
     },
     comment: {
         type: Array
+    },
+    likes: {
+        type: Number,
+        default: 0
     }
 });
 exports.default = mongoose_1.default.model("Blog", BlogSchema);

@@ -11,26 +11,36 @@ import admin from "./routes/userRoute"
 import protectedRouter from "./routes/protectedRoute"
 import swaggerUi from "swagger-ui-express";
 import swaggerOutput from './swagger_output.json';
+import upload from "./midddleware/multer"
+import { Request,Response } from "express"
 dotenv.config();
 const port = 3000;
 const app = express();
 
 
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 // create AP endpoint
  app.use("/welcome", welcome)
- app.use("/",blog)
+ app.use("/blog",blog)
  app.use("/get",getAll)
  app.use("/get",getAll)
  app.use("/delete",deleteBlog)
  app.use("/post",comment)
- app.use("/",updateBlog)
+ app.use("/update",updateBlog)
  app.use("/admin",admin)
- app.use("/",protectedRouter)
+ app.use("/protect",protectedRouter)
+ app.get("/hey", (_req: Request, res: Response) => {
+    res.send("Hello, World!");
+  });
+ // Set up a route for file uploads
+app.post('/upload', upload.single('file'), (req, res) => {
+    // Handle the uploaded file
+    res.json({ message: 'File uploaded successfully!' });
+  });
 
 
-
-
+  
 
 
 
@@ -45,6 +55,7 @@ const connectMongodb=()=>{
         mongoose.connect(mongoPASS)
         .then(()=>{
             console.log("dataBase successfully connected")
+           
         }).catch((err:any)=>{
             console.log("dataBase failed to connect:",err)
         })
@@ -55,6 +66,7 @@ const connectMongodb=()=>{
  connectMongodb();
 
 const server=app.listen(port, () => {
+    
     console.log("Our server is running on:", port);
     
 })

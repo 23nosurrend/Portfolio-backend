@@ -19,6 +19,10 @@ const BlogSchema = new mongoose.Schema({
         },
         comment:{
             type:Array
+        },
+        likes:{
+            type:Number,
+            default:0
         }
         
    

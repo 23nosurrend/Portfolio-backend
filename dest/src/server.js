@@ -16,20 +16,29 @@ const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const protectedRoute_1 = __importDefault(require("./routes/protectedRoute"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_output_json_1 = __importDefault(require("./swagger_output.json"));
+const multer_1 = __importDefault(require("./midddleware/multer"));
 dotenv_1.default.config();
 const port = 3000;
 const app = (0, express_1.default)();
+app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
 // create AP endpoint
 app.use("/welcome", welcomeRoutes_1.default);
-app.use("/", createBlogRoute_1.default);
+app.use("/blog", createBlogRoute_1.default);
 app.use("/get", readAllRoute_1.default);
 app.use("/get", readAllRoute_1.default);
 app.use("/delete", deleteBlogRoute_1.default);
 app.use("/post", commentRoute_1.default);
-app.use("/", updateBlogRoute_1.default);
+app.use("/update", updateBlogRoute_1.default);
 app.use("/admin", userRoute_1.default);
-app.use("/", protectedRoute_1.default);
-app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
+app.use("/protect", protectedRoute_1.default);
+app.get("/hey", (_req, res) => {
+    res.send("Hello, World!");
+});
+// Set up a route for file uploads
+app.post('/upload', multer_1.default.single('file'), (req, res) => {
+    // Handle the uploaded file
+    res.json({ message: 'File uploaded successfully!' });
+});
 const connectMongodb = () => {
     const mongoPASS = process.env.MONGOPASS;
     if (!mongoPASS) {

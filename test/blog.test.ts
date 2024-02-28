@@ -57,7 +57,7 @@ describe('readAll function', () =>{
       const title="Robots can peform better in Rwanda?"
       const content="New summary is based on teh statistics"
       const response=await supertest(server)
-      .put('/blog')
+      .put('/update/blog')
       .send({title,content})
       expect(response.status).toBe(200);
       expect(response.body.status).toBe("success");

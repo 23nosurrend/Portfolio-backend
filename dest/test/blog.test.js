@@ -56,7 +56,7 @@ describe("update blog", () => {
         const title = "Robots can peform better in Rwanda?";
         const content = "New summary is based on teh statistics";
         const response = yield (0, supertest_1.default)(server_1.default)
-            .put('/blog')
+            .put('/update/blog')
             .send({ title, content });
         expect(response.status).toBe(200);
         expect(response.body.status).toBe("success");

@@ -12,6 +12,16 @@
         }
     ],
     "paths": {
+        "/upload": {
+            "post": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/welcome/": {
             "post": {
                 "description": "",
