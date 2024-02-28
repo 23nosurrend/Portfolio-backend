@@ -9,10 +9,14 @@ import comment from "./routes/commentRoute"
 import updateBlog from "./routes/updateBlogRoute"
 import admin from "./routes/userRoute"
 import protectedRouter from "./routes/protectedRoute"
+import swaggerUi from "swagger-ui-express";
+import swaggerOutput from './swagger_output.json';
 dotenv.config();
 const port = 3000;
 const app = express();
 
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 // create AP endpoint
  app.use("/welcome", welcome)
  app.use("/",blog)
@@ -23,6 +27,7 @@ const app = express();
  app.use("/",updateBlog)
  app.use("/admin",admin)
  app.use("/",protectedRouter)
+
 
 
 
