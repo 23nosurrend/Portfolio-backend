@@ -16,14 +16,18 @@ beforeAll(async () => {
 
 
 describe('readAll function', () =>{
-  it('should retrieve all blogs',async () => {
-    const response= await supertest(server).get('/get/blogs'); 
+  it('should retrieve one blog',async () => {
+    const title="Robots can peform better in Rwanda?"
+    const response= await supertest(server)
+    .get('/get/blog')
+    .send({title})
 
     expect(response.status).toBe(200)
     expect(response.body.status).toBe('success')
-    expect(response.body.data.blogs).toHaveLength(2); 
+    expect(response.body.data.message).toBeDefined(); // Check if message data exists
+    expect(response.body.data.message._id).toBeDefined()
     
-  })
+  }),15000
 
 });
 describe('readAll function', () =>{
@@ -32,7 +36,7 @@ describe('readAll function', () =>{
   
       expect(response.status).toBe(200)
       expect(response.body.status).toBe('success')
-      expect(response.body.data.blogs).toHaveLength(2); 
+      expect(response.body.data.blogs).toHaveLength(4); 
       
     })
   

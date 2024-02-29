@@ -22,14 +22,14 @@ const app = express();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 // create AP endpoint
  app.use("/welcome", welcome)
- app.use("/blog",blog)
- app.use("/get",getAll)
- app.use("/get",getAll)
- app.use("/delete",deleteBlog)
- app.use("/post",comment)
- app.use("/update",updateBlog)
- app.use("/admin",admin)
- app.use("/protect",protectedRouter)
+ app.use("/blog",blog /**#swagger.tags =["Blog"] */)
+ app.use("/get",getAll /**#swagger.tags=["readBlog"] */)
+ app.use("/get",getAll/**#swagger.tags=["readBlog"] */ )
+ app.use("/delete",deleteBlog /**#swagger.tags=["deleteBlog"] */)
+ app.use("/post",comment/**#swagger.tags=["comment-Blog"] */ )
+ app.use("/update",updateBlog /**#swagger.tags=["Update-Blog"] */)
+ app.use("/admin",admin /**#swagger.tags=["User"] */)
+ app.use("/protect",protectedRouter /**#swagger.tags=["Auth"] */)
  app.get("/hey", (_req: Request, res: Response) => {
     res.send("Hello, World!");
   });

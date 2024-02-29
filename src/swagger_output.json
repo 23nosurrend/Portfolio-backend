@@ -12,6 +12,16 @@
     }
   ],
   "paths": {
+    "/hey": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/upload": {
       "post": {
         "description": "",
@@ -32,7 +42,7 @@
         }
       }
     },
-    "/post": {
+    "/blog/post": {
       "post": {
         "description": "",
         "responses": {
@@ -44,6 +54,9 @@
     },
     "/get/blogs": {
       "get": {
+        "tags": [
+          "readBlog"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -57,6 +70,9 @@
     },
     "/get/blog": {
       "get": {
+        "tags": [
+          "readBlog"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -73,6 +89,9 @@
     },
     "/delete/blogs": {
       "delete": {
+        "tags": [
+          "deleteBlog"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -89,6 +108,9 @@
     },
     "/delete/blog": {
       "delete": {
+        "tags": [
+          "deleteBlog"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -127,7 +149,7 @@
         }
       }
     },
-    "/blog": {
+    "/update/blog": {
       "put": {
         "description": "",
         "responses": {
@@ -139,6 +161,9 @@
     },
     "/admin/signUp": {
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -178,6 +203,9 @@
     },
     "/admin/login": {
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -209,8 +237,11 @@
         }
       }
     },
-    "/": {
+    "/protect/": {
       "get": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
