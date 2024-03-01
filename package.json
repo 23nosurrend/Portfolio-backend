@@ -2,11 +2,11 @@
   "name": "portfoli-backend",
   "version": "1.0.0",
   "description": "Portfolio-Backend",
-  "main": "dest/src/server.js",
+  "main": "./dest/src/server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=50000 --detectOpenHandles",
     "start": "tsc",
-    "dev": "node dest/src/server.js ",
+    "dev": "node ./dest/src/server.js ",
     "test-ci": "cross-env NODE_ENV=test jest --ci --coverage"
   },
   "author": "Keynes Bizimana",
