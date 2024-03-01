@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -25,10 +16,10 @@ const storage = multer_1.default.diskStorage({
 });
 // Create the multer instance
 const upload = (0, multer_1.default)({ storage: storage }).single('image'); // Assuming 'image' is the name of the file upload field
-const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createBlog = async (req, res) => {
     try {
         // Handle file upload
-        upload(req, res, (err) => __awaiter(void 0, void 0, void 0, function* () {
+        upload(req, res, async (err) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({
@@ -46,7 +37,7 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 });
             }
             // Check if blog with the same title already exists
-            const existingBlog = yield creatBlogModel_1.default.findOne({ title });
+            const existingBlog = await creatBlogModel_1.default.findOne({ title });
             if (existingBlog) {
                 return res.status(409).json({
                     status: "fail",
@@ -62,14 +53,14 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 title,
                 content
             });
-            yield newBlog.save();
+            await newBlog.save();
             return res.status(200).json({
                 status: "success",
                 data: {
                     message: "Blog created successfully"
                 }
             });
-        }));
+        });
     }
     catch (err) {
         console.error(err);
@@ -80,5 +71,5 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             }
         });
     }
-});
+};
 exports.default = createBlog;
