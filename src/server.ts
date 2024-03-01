@@ -30,7 +30,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
  app.use("/update",updateBlog /**#swagger.tags=["Update-Blog"] */)
  app.use("/admin",admin /**#swagger.tags=["User"] */)
  app.use("/protect",protectedRouter /**#swagger.tags=["Auth"] */)
- app.get("/hey", (_req: Request, res: Response) => {
+ app.get("/", (_req: Request, res: Response) => {
     res.send("Hello, World!");
   });
  // Set up a route for file uploads

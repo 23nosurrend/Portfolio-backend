@@ -31,7 +31,7 @@ app.use("/post", commentRoute_1.default /**#swagger.tags=["comment-Blog"] */);
 app.use("/update", updateBlogRoute_1.default /**#swagger.tags=["Update-Blog"] */);
 app.use("/admin", userRoute_1.default /**#swagger.tags=["User"] */);
 app.use("/protect", protectedRoute_1.default /**#swagger.tags=["Auth"] */);
-app.get("/hey", (_req, res) => {
+app.get("/", (_req, res) => {
     res.send("Hello, World!");
 });
 // Set up a route for file uploads

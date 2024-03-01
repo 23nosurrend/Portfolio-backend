@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.39% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/41</span>
+                <span class='fraction'>9/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">41.17% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/28</span>
+                <span class='fraction'>7/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.14% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/14</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.41% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/34</span>
+                <span class='fraction'>9/27</span>
             </div>
         
             
@@ -138,25 +138,7 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -232,15 +214,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
-var __awaiter = (this &amp;&amp; this.__awaiter) || <span class="fstat-no" title="function not covered" >fu</span>nction (thisArg, _arguments, P, generator) {
-    function <span class="fstat-no" title="function not covered" >adopt(</span>value) { <span class="cstat-no" title="statement not covered" >return value instanceof P ? value : new P(<span class="fstat-no" title="function not covered" >fu</span>nction (resolve) { <span class="cstat-no" title="statement not covered" >resolve(value); </span>}); </span>}
-<span class="cstat-no" title="statement not covered" >    return new (P || (P = Promise))(<span class="fstat-no" title="function not covered" >fu</span>nction (resolve, reject) {</span>
-        function <span class="fstat-no" title="function not covered" >fulfilled(</span>value) { <span class="cstat-no" title="statement not covered" >try { <span class="cstat-no" title="statement not covered" >step(generator.next(value)); </span>} catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} </span>}
-        function <span class="fstat-no" title="function not covered" >rejected(</span>value) { <span class="cstat-no" title="statement not covered" >try { <span class="cstat-no" title="statement not covered" >step(generator["throw"](value)); </span>} catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} </span>}
-        function <span class="fstat-no" title="function not covered" >step(</span>result) { <span class="cstat-no" title="statement not covered" >result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); </span>}
-<span class="cstat-no" title="statement not covered" >        step((generator = generator.apply(thisArg, _arguments || [])).next());</span>
-    });
-};
 var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
     return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
 };
@@ -258,10 +231,10 @@ const storage = multer_1.default.diskStorage({
 });
 // Create the multer instance
 const upload = (0, multer_1.default)({ storage: storage }).single('image'); // Assuming 'image' is the name of the file upload field
-const createBlog = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; <span class="cstat-no" title="statement not covered" >__awaiter(void 0, void 0, void 0, <span class="fstat-no" title="function not covered" >fu</span>nction* () {</span>
+const createBlog = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >    try {</span>
         // Handle file upload
-<span class="cstat-no" title="statement not covered" >        upload(req, res, <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >__awaiter(void 0, void 0, void 0, <span class="fstat-no" title="function not covered" >fu</span>nction* () {</span></span>
+<span class="cstat-no" title="statement not covered" >        upload(req, res, <span class="fstat-no" title="function not covered" >as</span>ync (err) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            if (err) {</span>
 <span class="cstat-no" title="statement not covered" >                console.error(err);</span>
 <span class="cstat-no" title="statement not covered" >                return res.status(500).json({</span>
@@ -279,7 +252,7 @@ const createBlog = <span class="fstat-no" title="function not covered" >(r</span
                 });
             }
             // Check if blog with the same title already exists
-            const existingBlog = <span class="cstat-no" title="statement not covered" >yield creatBlogModel_1.default.findOne({ title });</span>
+            const existingBlog = <span class="cstat-no" title="statement not covered" >await creatBlogModel_1.default.findOne({ title });</span>
 <span class="cstat-no" title="statement not covered" >            if (existingBlog) {</span>
 <span class="cstat-no" title="statement not covered" >                return res.status(409).json({</span>
                     status: "fail",
@@ -295,14 +268,14 @@ const createBlog = <span class="fstat-no" title="function not covered" >(r</span
                 title,
                 content
             });
-<span class="cstat-no" title="statement not covered" >            yield newBlog.save();</span>
+<span class="cstat-no" title="statement not covered" >            await newBlog.save();</span>
 <span class="cstat-no" title="statement not covered" >            return res.status(200).json({</span>
                 status: "success",
                 data: {
                     message: "Blog created successfully"
                 }
             });
-        }));
+        });
     }
     catch (err) {
 <span class="cstat-no" title="statement not covered" >        console.error(err);</span>
@@ -313,7 +286,7 @@ const createBlog = <span class="fstat-no" title="function not covered" >(r</span
             }
         });
     }
-});
+};
 exports.default = createBlog;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -322,7 +295,7 @@ exports.default = createBlog;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-29T19:42:41.334Z
+                at 2024-03-01T08:57:29.184Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
