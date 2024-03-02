@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import welcome from './routes/welcomeRoutes'
@@ -16,6 +17,7 @@ import { Request,Response } from "express"
 dotenv.config();
 const port = 3000;
 const app = express();
+app.use(cors())
 
 
 
