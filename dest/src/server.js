@@ -22,6 +22,7 @@ dotenv_1.default.config();
 const port = 3000;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
+app.use('/uploads', express_1.default.static('uploads'));
 app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
 // create AP endpoint
 app.use("/welcome", welcomeRoutes_1.default);

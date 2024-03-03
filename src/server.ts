@@ -20,7 +20,7 @@ const app = express();
 app.use(cors())
 
 
-
+app.use('/uploads',express.static('uploads'))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 // create AP endpoint
  app.use("/welcome", welcome)
