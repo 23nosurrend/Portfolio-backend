@@ -36,7 +36,7 @@ const readAll=async (req:any,res:any)=>{
 
 const readOne=async(req:any,res:any)=>{
     try{
-        const {title}=req.body
+        const {title}=req.params
         const FoundOne=await Blogs.findOne({title})
         if(!FoundOne){
             return res.status(400).json({

@@ -9,5 +9,5 @@ const readBlogController_1 = require("../controllers/readBlogController");
 const router = express_1.default.Router();
 router.use(body_parser_1.default.json());
 router.get("/blogs", readBlogController_1.readAll);
-router.get("/blog", readBlogController_1.readOne);
+router.get("/blog/:title", readBlogController_1.readOne);
 exports.default = router;

@@ -8,7 +8,7 @@ const router:Router=express.Router()
 
 router.use(bodyParser.json())
 router.get("/blogs",readAll)
-router.get("/blog",readOne)
+router.get("/blog/:title",readOne)
 
 export default router
 

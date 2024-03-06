@@ -38,7 +38,7 @@ const readAll = async (req, res) => {
 exports.readAll = readAll;
 const readOne = async (req, res) => {
     try {
-        const { title } = req.body;
+        const { title } = req.params;
         const FoundOne = await creatBlogModel_1.default.findOne({ title });
         if (!FoundOne) {
             return res.status(400).json({

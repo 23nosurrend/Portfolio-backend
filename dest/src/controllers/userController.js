@@ -100,7 +100,7 @@ const loginController = async (req, res) => {
                         return res.status(200).json({
                             status: "success",
                             data: {
-                                message: "User created successfully",
+                                message: "Login successfully",
                                 token: token
                             }
                         });
